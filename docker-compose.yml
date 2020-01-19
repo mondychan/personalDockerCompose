@@ -7,7 +7,7 @@ services:
     container_name: nextcloud
     hostname: nextcloud
     networks:
-      - proxy
+      - web
     depends_on:
       - db
       - redis
@@ -32,7 +32,7 @@ services:
     container_name: documentserver
     hostname: documentserver
     networks:
-      - proxy
+      - web
     depends_on:
       - db
     volumes:
@@ -48,7 +48,7 @@ services:
     container_name: db
     hostname: db
     networks:
-      - proxy
+      - web
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
@@ -66,7 +66,7 @@ services:
       - redis-db:/bitnami/redis/data
       - redis-config:/opt/bitnami/redis/etc/redis.conf
     networks:
-      - proxy
+      - web
       
 volumes:
   nextcloud-main:
@@ -80,6 +80,6 @@ volumes:
   redis-config:
 
 networks:
-    proxy:
-      name: proxy
+    web:
+      name: web
 
